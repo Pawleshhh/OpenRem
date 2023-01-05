@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyTitle>OpenRem.Service.Server</AssemblyTitle>
     <Company>DGS</Company>
     <Product>OpenRem.Service</Product>
@@ -13,7 +13,7 @@
     <OutputPath>..\..\_Result\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac" Version="6.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BL\OpenRem.Engine.Interface\OpenRem.Engine.Interface.csproj" />

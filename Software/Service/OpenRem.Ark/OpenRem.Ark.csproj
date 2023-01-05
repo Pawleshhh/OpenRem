@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyTitle>OpenRem.Ark</AssemblyTitle>
     <Product>OpenRem.Ark</Product>
     <Copyright>Copyright ©  2019</Copyright>
@@ -15,7 +15,7 @@
     <ProjectReference Include="..\..\Common\OpenRem.Core\OpenRem.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="System.Reactive" Version="4.1.6" />
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 </Project>
