@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace OpenRem.Emulator
 {
     /// <summary>
@@ -12,6 +14,7 @@ namespace OpenRem.Emulator
         public event MicroTimerElapsedEventHandler MicroTimerElapsed;
 
         System.Threading.Thread _threadTimer = null;
+        CancellationToken cancellationToken;
         long _ignoreEventIfLateBy = long.MaxValue;
         long _timerIntervalInMicroSec = 0;
         bool _stopTimer = true;
@@ -86,6 +89,7 @@ namespace OpenRem.Emulator
             };
 
             this._threadTimer = new System.Threading.Thread(threadStart);
+            this.cancellationToken = new CancellationToken();
             this._threadTimer.Priority = System.Threading.ThreadPriority.Highest;
             this._threadTimer.Start();
         }
@@ -119,7 +123,7 @@ namespace OpenRem.Emulator
 
             if (Enabled)
             {
-                this._threadTimer.Abort();
+                this.cancellationToken.ThrowIfCancellationRequested();
             }
         }
 
