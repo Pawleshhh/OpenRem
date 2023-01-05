@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <AssemblyTitle>OpenRem.Service.Server</AssemblyTitle>
     <Company>DGS</Company>
     <Product>OpenRem.Service</Product>

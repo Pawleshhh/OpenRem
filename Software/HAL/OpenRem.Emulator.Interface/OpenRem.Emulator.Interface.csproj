@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>OpenRem.Emulator</RootNamespace>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <AssemblyTitle>OpenRem.Emulator.Interface</AssemblyTitle>
     <Product>OpenRem.Emulator.Interface</Product>
     <Copyright>Copyright ©  2019</Copyright>
