@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyTitle>OpenRem.Arduino</AssemblyTitle>
     <Product>OpenRem.Arduino</Product>
     <Copyright>Copyright ©  2019</Copyright>
@@ -10,7 +10,7 @@
     <OutputPath>..\..\_Result\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="4.6.0" />
+    <PackageReference Include="System.IO.Ports" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\OpenRem.Common\OpenRem.Common.csproj" />
@@ -19,7 +19,7 @@
     <ProjectReference Include="..\OpenRem.HAL.Interface\OpenRem.HAL.Interface.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="System.Reactive" Version="4.1.6" />
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 </Project>

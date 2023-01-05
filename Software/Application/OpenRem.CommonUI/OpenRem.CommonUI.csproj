@@ -1,18 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <OutputPath>..\..\_Result\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="4.9.4" />
-        <PackageReference Include="CommonServiceLocator" Version="2.0.4" />        
-        <PackageReference Include="ReactiveUI" Version="10.4.1" />
-        <PackageReference Include="System.Reactive" Version="4.1.6" />
+        <PackageReference Include="Autofac" Version="6.5.0" />
+        <PackageReference Include="CommonServiceLocator" Version="2.0.6" />        
+        <PackageReference Include="ReactiveUI" Version="18.4.1" />
+        <PackageReference Include="System.Reactive" Version="5.0.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Common\OpenRem.Common.Application\OpenRem.Common.Application.csproj" />
