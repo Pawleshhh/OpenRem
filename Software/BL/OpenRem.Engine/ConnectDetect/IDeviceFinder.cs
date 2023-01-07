@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Engine
+﻿namespace OpenRem.Engine;
+
+internal interface IDeviceFinder
 {
-    internal interface IDeviceFinder
-    {
-        ArduinoDevice[] GetArduinoDevices();
-    }
+    ArduinoDevice[] GetArduinoDevices();
 }

@@ -1,8 +1,7 @@
-﻿namespace OpenRem.CommonUI
+﻿namespace OpenRem.CommonUI;
+
+public enum SizeChange
 {
-    public enum SizeChange
-    {
-        Started,
-        Finished
-    }
+    Started,
+    Finished
 }

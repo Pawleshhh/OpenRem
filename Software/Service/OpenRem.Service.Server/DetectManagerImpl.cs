@@ -4,30 +4,29 @@ using Grpc.Core;
 using OpenRem.Engine;
 using OpenRem.Service.Protocol;
 
-namespace OpenRem.Service.Server
+namespace OpenRem.Service.Server;
+
+[ServiceImplementation(typeof(DetectManager))]
+class DetectManagerImpl : DetectManager.DetectManagerBase
 {
-    [ServiceImplementation(typeof(DetectManager))]
-    class DetectManagerImpl : DetectManager.DetectManagerBase
+    private IDetectManager real;
+
+    public DetectManagerImpl(IDetectManager detectManager)
     {
-        private IDetectManager real;
+        this.real = detectManager;
+    }
 
-        public DetectManagerImpl(IDetectManager detectManager)
+    public override async Task<GetAnalyzerResponse> GetAnalyzers(EmptyRequest request, ServerCallContext context)
+    {
+        var analyzers = await this.real.GetAnalyzersAsync();
+        
+        var response = new GetAnalyzerResponse();
+        response.Analyzers.AddRange(analyzers.Select(x => new GetAnalyzerResponse.Types.AnalyzerDTO()
         {
-            this.real = detectManager;
-        }
+            Id = x.Id.ToString(),
+            Name = x.Name
+        }));
 
-        public override async Task<GetAnalyzerResponse> GetAnalyzers(EmptyRequest request, ServerCallContext context)
-        {
-            var analyzers = await this.real.GetAnalyzersAsync();
-            
-            var response = new GetAnalyzerResponse();
-            response.Analyzers.AddRange(analyzers.Select(x => new GetAnalyzerResponse.Types.AnalyzerDTO()
-            {
-                Id = x.Id.ToString(),
-                Name = x.Name
-            }));
-
-            return response;
-        }
+        return response;
     }
 }

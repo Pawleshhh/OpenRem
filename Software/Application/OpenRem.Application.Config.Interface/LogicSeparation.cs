@@ -1,9 +1,8 @@
-﻿namespace OpenRem.Config
+﻿namespace OpenRem.Config;
+
+public enum LogicSeparation
 {
-    public enum LogicSeparation
-    {
-        Unknown = 0,
-        SelfHostedService,
-        Binary
-    }
+    Unknown = 0,
+    SelfHostedService,
+    Binary
 }

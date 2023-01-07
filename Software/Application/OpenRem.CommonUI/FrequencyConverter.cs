@@ -2,43 +2,42 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace OpenRem.CommonUI
+namespace OpenRem.CommonUI;
+
+public class FrequencyConverter : IValueConverter
 {
-    public class FrequencyConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        if (value is string strVal)
         {
-            if (value is string strVal)
+            if (double.TryParse(strVal, out var dblVal))
             {
-                if (double.TryParse(strVal, out var dblVal))
+                if (dblVal >= 1000)
                 {
-                    if (dblVal >= 1000)
-                    {
-                        return (dblVal / 1000) + " k";
-                    }
-                }
-
-                return strVal;
-            }
-
-            if (value is int intVal)
-            {
-                if (intVal >= 1000)
-                {
-                    return (intVal / 1000.0) + " k";
-                }
-                else
-                {
-                    return intVal;
+                    return (dblVal / 1000) + " k";
                 }
             }
 
-            return Binding.DoNothing;
+            return strVal;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        if (value is int intVal)
         {
-            return Binding.DoNothing;
+            if (intVal >= 1000)
+            {
+                return (intVal / 1000.0) + " k";
+            }
+            else
+            {
+                return intVal;
+            }
         }
+
+        return Binding.DoNothing;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return Binding.DoNothing;
     }
 }

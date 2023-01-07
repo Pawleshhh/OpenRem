@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Config
+﻿namespace OpenRem.Config;
+
+public interface IAnalyzerConfigReader
 {
-    public interface IAnalyzerConfigReader
-    {
-        AnalyzerConfig GetConfig(string name);
-    }
+    AnalyzerConfig GetConfig(string name);
 }

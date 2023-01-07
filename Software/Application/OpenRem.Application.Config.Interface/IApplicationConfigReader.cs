@@ -1,8 +1,7 @@
-﻿namespace OpenRem.Config
+﻿namespace OpenRem.Config;
+
+public interface IApplicationConfigReader
 {
-    public interface IApplicationConfigReader
-    {
-        BootstrapperConfig GetBootstrapperConfig();
-        ServiceConfig GetServiceConfig();
-    }
+    BootstrapperConfig GetBootstrapperConfig();
+    ServiceConfig GetServiceConfig();
 }

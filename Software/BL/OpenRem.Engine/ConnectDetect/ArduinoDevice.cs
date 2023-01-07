@@ -1,8 +1,7 @@
-﻿namespace OpenRem.Engine
+﻿namespace OpenRem.Engine;
+
+internal class ArduinoDevice
 {
-    internal class ArduinoDevice
-    {
-        public string Name { get; set; }
-        public string ComPort { get; set; }
-    }
+    public string Name { get; set; }
+    public string ComPort { get; set; }
 }

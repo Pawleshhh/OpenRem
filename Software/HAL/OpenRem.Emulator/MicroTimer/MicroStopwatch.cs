@@ -1,24 +1,23 @@
 using System;
 using System.Diagnostics;
 
-namespace OpenRem.Emulator
+namespace OpenRem.Emulator;
+
+/// <summary>
+/// MicroStopwatch class
+/// </summary>
+public class MicroStopwatch : Stopwatch
 {
-    /// <summary>
-    /// MicroStopwatch class
-    /// </summary>
-    public class MicroStopwatch : Stopwatch
+    readonly double _microSecPerTick = 1000000D / Stopwatch.Frequency;
+
+    public MicroStopwatch()
     {
-        readonly double _microSecPerTick = 1000000D / Stopwatch.Frequency;
-
-        public MicroStopwatch()
+        if (!Stopwatch.IsHighResolution)
         {
-            if (!Stopwatch.IsHighResolution)
-            {
-                throw new Exception("On this system the high-resolution " +
-                                    "performance counter is not available");
-            }
+            throw new Exception("On this system the high-resolution " +
+                                "performance counter is not available");
         }
-
-        public long ElapsedMicroseconds => (long) (ElapsedTicks * this._microSecPerTick);
     }
+
+    public long ElapsedMicroseconds => (long) (ElapsedTicks * this._microSecPerTick);
 }

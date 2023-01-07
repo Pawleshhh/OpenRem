@@ -1,12 +1,11 @@
 ﻿using Autofac;
 
-namespace OpenRem.Arduino.Module
+namespace OpenRem.Arduino.Module;
+
+public class ArduinoModule : Autofac.Module
 {
-    public class ArduinoModule : Autofac.Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<ArduinoFactory>().As<IArduinoFactory>();
-        }
+        builder.RegisterType<ArduinoFactory>().As<IArduinoFactory>();
     }
 }

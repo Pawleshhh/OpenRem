@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace OpenRem.Application.Config
+namespace OpenRem.Application.Config;
+
+class ApplicationConfigurationProvider : IApplicationConfigurationProvider
 {
-    class ApplicationConfigurationProvider : IApplicationConfigurationProvider
+    public IApplicationConfiguration GetConfigurationRoot()
     {
-        public IApplicationConfiguration GetConfigurationRoot()
-        {
-            return new ConfigurationBuilder()
-                .AddJsonFile("Config/ApplicationConfig.json")
-                .Build()
-                .ToApplicationConfiguration();
-        }
+        return new ConfigurationBuilder()
+            .AddJsonFile("Config/ApplicationConfig.json")
+            .Build()
+            .ToApplicationConfiguration();
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace OpenRem.Emulator
+namespace OpenRem.Emulator;
+
+public interface IEmbeddedSample
 {
-    public interface IEmbeddedSample
-    {
-        IEnumerable<string> GetSamples();
-    }
+    IEnumerable<string> GetSamples();
 }

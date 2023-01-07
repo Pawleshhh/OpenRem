@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace OpenRem.Engine
+namespace OpenRem.Engine;
+
+public interface IDetectManager
 {
-    public interface IDetectManager
-    {
-        Task<Analyzer[]> GetAnalyzersAsync();
-    }
+    Task<Analyzer[]> GetAnalyzersAsync();
 }

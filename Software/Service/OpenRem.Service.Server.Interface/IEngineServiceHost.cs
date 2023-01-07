@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
 
-namespace OpenRem.Service.Server
-{
-    public interface IEngineServiceHost
-    {
-        void Start();
-        Task StopAsync();
+namespace OpenRem.Service.Server;
 
-        string HostName { get; }
-        int Port { get; }
-    }
+public interface IEngineServiceHost
+{
+    void Start();
+    Task StopAsync();
+
+    string HostName { get; }
+    int Port { get; }
 }

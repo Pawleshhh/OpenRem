@@ -3,35 +3,34 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace OpenRem.CommonUI
+namespace OpenRem.CommonUI;
+
+public class NullOrEmptyToVisibilityConverter : IValueConverter
 {
-    public class NullOrEmptyToVisibilityConverter : IValueConverter
+    public Visibility NullValue { get; set; }
+    public Visibility NotNullValue { get; set; }
+
+    public NullOrEmptyToVisibilityConverter()
     {
-        public Visibility NullValue { get; set; }
-        public Visibility NotNullValue { get; set; }
+        NullValue = Visibility.Collapsed;
+        NotNullValue = Visibility.Visible;
+    }
 
-        public NullOrEmptyToVisibilityConverter()
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        switch (value)
         {
-            NullValue = Visibility.Collapsed;
-            NotNullValue = Visibility.Visible;
+            case null:
+                return NullValue;
+            case string s:
+                return string.IsNullOrEmpty(s) ? NullValue : NotNullValue;
+            default:
+                return NotNullValue;
         }
+    }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            switch (value)
-            {
-                case null:
-                    return NullValue;
-                case string s:
-                    return string.IsNullOrEmpty(s) ? NullValue : NotNullValue;
-                default:
-                    return NotNullValue;
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

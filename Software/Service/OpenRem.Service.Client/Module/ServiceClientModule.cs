@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
 using Autofac;
 
-namespace OpenRem.Service.Client
+namespace OpenRem.Service.Client;
+
+class ServiceClientModule : Autofac.Module
 {
-    class ServiceClientModule : Autofac.Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            var dataAccess = Assembly.GetExecutingAssembly();
-            builder.RegisterAssemblyTypes(dataAccess).AsImplementedInterfaces();
-            builder.RegisterType<ServiceConfig>().AsSelf().SingleInstance();
-        }
+        var dataAccess = Assembly.GetExecutingAssembly();
+        builder.RegisterAssemblyTypes(dataAccess).AsImplementedInterfaces();
+        builder.RegisterType<ServiceConfig>().AsSelf().SingleInstance();
     }
 }

@@ -2,36 +2,35 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 
-namespace OpenRem.Config.Infrastructure
+namespace OpenRem.Config.Infrastructure;
+
+class BusinessLogicConfigurationAdapter : IBusinessLogicConfiguration
 {
-    class BusinessLogicConfigurationAdapter : IBusinessLogicConfiguration
+    private readonly IConfiguration configuration;
+
+    public BusinessLogicConfigurationAdapter(IConfiguration configuration)
     {
-        private readonly IConfiguration configuration;
+        this.configuration = configuration;
+    }
 
-        public BusinessLogicConfigurationAdapter(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
+    public string this[string key]
+    {
+        get => this.configuration[key];
+        set => this.configuration[key] = value;
+    }
 
-        public string this[string key]
-        {
-            get => this.configuration[key];
-            set => this.configuration[key] = value;
-        }
+    public IEnumerable<IConfigurationSection> GetChildren()
+    {
+        return this.configuration.GetChildren();
+    }
 
-        public IEnumerable<IConfigurationSection> GetChildren()
-        {
-            return this.configuration.GetChildren();
-        }
+    public IChangeToken GetReloadToken()
+    {
+        return this.configuration.GetReloadToken();
+    }
 
-        public IChangeToken GetReloadToken()
-        {
-            return this.configuration.GetReloadToken();
-        }
-
-        public IConfigurationSection GetSection(string key)
-        {
-            return this.configuration.GetSection(key);
-        }
+    public IConfigurationSection GetSection(string key)
+    {
+        return this.configuration.GetSection(key);
     }
 }

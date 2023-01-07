@@ -1,9 +1,8 @@
-﻿namespace OpenRem.Engine
+﻿namespace OpenRem.Engine;
+
+public enum PcmEncoding
 {
-    public enum PcmEncoding
-    {
-        PCM8Bit = 8,
-        PCM16Bit = 16,
-        PCM32Bit = 32,
-    }
+    PCM8Bit = 8,
+    PCM16Bit = 16,
+    PCM32Bit = 32,
 }

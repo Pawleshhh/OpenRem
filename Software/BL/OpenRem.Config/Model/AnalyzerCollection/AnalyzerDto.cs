@@ -1,11 +1,10 @@
-﻿namespace OpenRem.Config.Model.AnalyzerCollection
+﻿namespace OpenRem.Config.Model.AnalyzerCollection;
+
+class AnalyzerDto
 {
-    class AnalyzerDto
-    {
-        public string Name { get; set; }
-        public int SampleRate { get; set; }
-        public int SubChunkSize { get; set; }
-        public int Channels { get; set; }
-        public ProbeDto[] Probes { get; set; }
-    }
+    public string Name { get; set; }
+    public int SampleRate { get; set; }
+    public int SubChunkSize { get; set; }
+    public int Channels { get; set; }
+    public ProbeDto[] Probes { get; set; }
 }

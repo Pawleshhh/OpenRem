@@ -1,12 +1,11 @@
 ﻿using OpenRem.HAL;
 
-namespace OpenRem.Emulator
+namespace OpenRem.Emulator;
+
+class EmulatorFactory : IEmulatorFactory
 {
-    class EmulatorFactory : IEmulatorFactory
+    public IDataStream Create(string fileName)
     {
-        public IDataStream Create(string fileName)
-        {
-            return new InfiniteFileDataStream(fileName);
-        }
+        return new InfiniteFileDataStream(fileName);
     }
 }

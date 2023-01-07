@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace OpenRem.Core
+namespace OpenRem.Core;
+
+[AttributeUsage(AttributeTargets.Assembly)]
+public class ServiceLayerAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Assembly)]
-    public class ServiceLayerAttribute : Attribute
-    {
-    }
 }

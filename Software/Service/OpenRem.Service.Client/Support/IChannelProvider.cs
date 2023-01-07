@@ -1,9 +1,8 @@
 ﻿using Grpc.Core;
 
-namespace OpenRem.Service.Client
+namespace OpenRem.Service.Client;
+
+interface IChannelProvider
 {
-    interface IChannelProvider
-    {
-        Channel GetChannel();
-    }
+    Channel GetChannel();
 }

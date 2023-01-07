@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Service.Config
+﻿namespace OpenRem.Service.Config;
+
+public interface IServiceConfigReader
 {
-    public interface IServiceConfigReader
-    {
-        ServiceConfig GetServiceConfig();
-    }
+    ServiceConfig GetServiceConfig();
 }

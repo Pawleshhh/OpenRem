@@ -1,8 +1,7 @@
-namespace OpenRem.Arduino
+namespace OpenRem.Arduino;
+
+public enum ArduinoType
 {
-    public enum ArduinoType
-    {
-        Leonardo,
-        MKRZERO
-    }
+    Leonardo,
+    MKRZERO
 }

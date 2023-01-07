@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace OpenRem.Common.Test
+namespace OpenRem.Common.Test;
+
+[TestFixture]
+public class IntegrationTest
 {
-    [TestFixture]
-    public class IntegrationTest
+    [Test]
+    public void Hardcoded_AssemblyNames_AreCorrect()
     {
-        [Test]
-        public void Hardcoded_AssemblyNames_AreCorrect()
-        {
-            Assert.AreEqual("OpenRem.Engine", AppDomainHelper.EngineAssemblyName);
-            Assert.AreEqual("OpenRem.Engine.Interface", AppDomainHelper.EngineInterfaceAssemblyName);
-        }
+        Assert.AreEqual("OpenRem.Engine", AppDomainHelper.EngineAssemblyName);
+        Assert.AreEqual("OpenRem.Engine.Interface", AppDomainHelper.EngineInterfaceAssemblyName);
     }
 }

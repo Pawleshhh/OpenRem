@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace OpenRem.Engine.OS
+namespace OpenRem.Engine.OS;
+
+internal interface IPnPDevice
 {
-    internal interface IPnPDevice
-    {
-        IEnumerable<string> GetDevices();
-    }
+    IEnumerable<string> GetDevices();
 }

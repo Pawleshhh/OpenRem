@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Engine
+﻿namespace OpenRem.Engine;
+
+internal interface IEmulatorFinder
 {
-    internal interface IEmulatorFinder
-    {
-        Emulator[] GetEmulators();
-    }
+    Emulator[] GetEmulators();
 }

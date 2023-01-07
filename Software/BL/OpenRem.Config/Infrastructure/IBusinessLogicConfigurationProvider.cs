@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Config.Infrastructure
+﻿namespace OpenRem.Config.Infrastructure;
+
+internal interface IBusinessLogicConfigurationProvider
 {
-    internal interface IBusinessLogicConfigurationProvider
-    {
-        IBusinessLogicConfiguration GetConfigurationRoot();
-    }
+    IBusinessLogicConfiguration GetConfigurationRoot();
 }

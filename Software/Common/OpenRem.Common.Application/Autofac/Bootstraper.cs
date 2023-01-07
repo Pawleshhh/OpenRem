@@ -7,92 +7,91 @@ using Autofac;
 using Autofac.Core;
 using OpenRem.Core;
 
-namespace OpenRem.Common.Application.Autofac
+namespace OpenRem.Common.Application.Autofac;
+
+public static class Bootstraper
 {
-    public static class Bootstraper
+    public static IContainer BuildContainer(AssemblyFilter assemblyFilter)
     {
-        public static IContainer BuildContainer(AssemblyFilter assemblyFilter)
+        var builder = new ContainerBuilder();
+
+        builder.RegisterSoftwareModules(assemblyFilter);
+
+        var container = builder.Build();
+        return container;
+    }
+
+    private static string GetApplicationPath()
+    {
+        return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    }
+
+    private static IEnumerable<string> GetAssemblyNames(string path)
+    {
+        List<string> assemblyNames = new List<string>();
+        foreach (var searchPattern in new[] { "OpenRem*.dll" })
         {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterSoftwareModules(assemblyFilter);
-
-            var container = builder.Build();
-            return container;
+            assemblyNames.AddRange(Directory.GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
         }
 
-        private static string GetApplicationPath()
-        {
-            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        }
+        return assemblyNames;
+    }
 
-        private static IEnumerable<string> GetAssemblyNames(string path)
+    private static void RegisterSoftwareModules(this ContainerBuilder builder, AssemblyFilter assemblyFilter)
+    {
+        var path = GetApplicationPath();
+
+        //Preload assemblies
+        var assemblyNames = GetAssemblyNames(path);
+
+
+        var assemblies = assemblyNames.Select(Assembly.LoadFrom);
+
+        foreach (var assembly in assemblies)
         {
-            List<string> assemblyNames = new List<string>();
-            foreach (var searchPattern in new[] { "OpenRem*.dll" })
+            if (OmitAssembly(assemblyFilter, assembly)) continue;
+
+            var modules = assembly.GetTypes()
+                .Where(p => typeof(IModule).IsAssignableFrom(p) && !p.IsAbstract)
+                .Select(p => (IModule)Activator.CreateInstance(p));
+
+            foreach (var module in modules)
             {
-                assemblyNames.AddRange(Directory.GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
-            }
-
-            return assemblyNames;
-        }
-
-        private static void RegisterSoftwareModules(this ContainerBuilder builder, AssemblyFilter assemblyFilter)
-        {
-            var path = GetApplicationPath();
-
-            //Preload assemblies
-            var assemblyNames = GetAssemblyNames(path);
-
-
-            var assemblies = assemblyNames.Select(Assembly.LoadFrom);
-
-            foreach (var assembly in assemblies)
-            {
-                if (OmitAssembly(assemblyFilter, assembly)) continue;
-
-                var modules = assembly.GetTypes()
-                    .Where(p => typeof(IModule).IsAssignableFrom(p) && !p.IsAbstract)
-                    .Select(p => (IModule)Activator.CreateInstance(p));
-
-                foreach (var module in modules)
-                {
-                    builder.RegisterModule(module);
-                }
+                builder.RegisterModule(module);
             }
         }
+    }
 
-        private static bool OmitAssembly(AssemblyFilter assemblyFilter, Assembly assembly)
+    private static bool OmitAssembly(AssemblyFilter assemblyFilter, Assembly assembly)
+    {
+        if (assemblyFilter != AssemblyFilter.Everything)
         {
-            if (assemblyFilter != AssemblyFilter.Everything)
+            if (assemblyFilter == AssemblyFilter.OmitServiceLayer)
             {
-                if (assemblyFilter == AssemblyFilter.OmitServiceLayer)
+                var serviceLayerAttribute = assembly.GetCustomAttribute<ServiceLayerAttribute>();
+                if (serviceLayerAttribute != null)
                 {
-                    var serviceLayerAttribute = assembly.GetCustomAttribute<ServiceLayerAttribute>();
-                    if (serviceLayerAttribute != null)
-                    {
-                        return true;
-                    }
-                }
-
-                var attribute = assembly.GetCustomAttribute<ApplicationLayerAttribute>();
-                if (attribute != null)
-                {
-                    if (assemblyFilter == AssemblyFilter.OnlyLogic)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    if (assemblyFilter == AssemblyFilter.OnlyApplicationLayer)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
-            return false;
+            var attribute = assembly.GetCustomAttribute<ApplicationLayerAttribute>();
+            if (attribute != null)
+            {
+                if (assemblyFilter == AssemblyFilter.OnlyLogic)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (assemblyFilter == AssemblyFilter.OnlyApplicationLayer)
+                {
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 }

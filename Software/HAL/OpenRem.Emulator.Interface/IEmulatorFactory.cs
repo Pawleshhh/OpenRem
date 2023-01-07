@@ -1,9 +1,8 @@
 ﻿using OpenRem.HAL;
 
-namespace OpenRem.Emulator
+namespace OpenRem.Emulator;
+
+public interface IEmulatorFactory
 {
-    public interface IEmulatorFactory
-    {
-        IDataStream Create(string fileName);
-    }
+    IDataStream Create(string fileName);
 }

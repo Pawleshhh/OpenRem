@@ -4,22 +4,21 @@ using OpenRem.Common.Application.Autofac;
 using OpenRem.Service.Protocol;
 using OpenRem.Service.Server;
 
-namespace OpenRem.Service.Application
+namespace OpenRem.Service.Application;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var container = Bootstraper.BuildContainer(AssemblyFilter.OnlyLogic);
+        var container = Bootstraper.BuildContainer(AssemblyFilter.OnlyLogic);
 
-            var serviceWrapper = container.Resolve<IEngineServiceHost>();
-            serviceWrapper.Start();
+        var serviceWrapper = container.Resolve<IEngineServiceHost>();
+        serviceWrapper.Start();
 
-            Console.WriteLine(
-                $"Running OpenRem service on {serviceWrapper.HostName}:{serviceWrapper.Port}. Press Enter to close...");
-            Console.ReadLine();
+        Console.WriteLine(
+            $"Running OpenRem service on {serviceWrapper.HostName}:{serviceWrapper.Port}. Press Enter to close...");
+        Console.ReadLine();
 
-            serviceWrapper.StopAsync();
-        }
+        serviceWrapper.StopAsync();
     }
 }
