@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using OpenRem.Common.Application.Autofac;
 using OpenRem.Config;
 using OpenRem.Service.Server;
+using System.Windows;
 
 namespace OpenRem.UI;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Data;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 [ValueConversion(typeof(bool), typeof(bool))]
 public class InverseBooleanConverter : IValueConverter
@@ -17,7 +13,7 @@ public class InverseBooleanConverter : IValueConverter
             return DependencyProperty.UnsetValue;
         }
 
-        return !(bool) value;
+        return !(bool)value;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter,

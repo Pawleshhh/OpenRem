@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Markup;
 
 namespace OpenRem.CommonUI;
 
@@ -33,11 +28,11 @@ public class TypeSpecificDataTemplateSelector : DataTemplateSelector
         var defaultTemplate = Templates.FirstOrDefault(template => template != null && template.IsDefault);
 
         // Try to find type specific template
-        var otherTemplates = Templates.Except(new[] {defaultTemplate});
+        var otherTemplates = Templates.Except(new[] { defaultTemplate });
         var foundTemplate = otherTemplates
             .Where(template => template.DataTemplate != null &&
-                               ((Type) template.DataTemplate.DataType).IsInstanceOfType(item))
-            .OrderByDescending(template => (Type) template.DataTemplate.DataType, new TypeComparer())
+                               ((Type)template.DataTemplate.DataType).IsInstanceOfType(item))
+            .OrderByDescending(template => (Type)template.DataTemplate.DataType, new TypeComparer())
             .FirstOrDefault();
 
         if (foundTemplate != null)

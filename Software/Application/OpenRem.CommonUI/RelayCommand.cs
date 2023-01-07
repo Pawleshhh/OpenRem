@@ -1,10 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿namespace OpenRem.CommonUI;
 
-namespace OpenRem.CommonUI;
-
-public class RelayCommand:ICommand
+public class RelayCommand : ICommand
 {
     private Action action;
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 public class KeyToResourceConverter : IValueConverter
 {

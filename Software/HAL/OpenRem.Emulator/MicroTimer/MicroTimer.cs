@@ -81,7 +81,7 @@ public class MicroTimer
 
         this._stopTimer = false;
 
-        System.Threading.ThreadStart threadStart = delegate()
+        System.Threading.ThreadStart threadStart = delegate ()
         {
             NotificationTimer(ref this._timerIntervalInMicroSec,
                 ref this._ignoreEventIfLateBy,

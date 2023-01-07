@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using OpenRem.Config;
+﻿using OpenRem.Config;
 
 namespace OpenRem.Application.Config;
 

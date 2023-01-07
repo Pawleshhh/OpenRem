@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using OpenRem.Config;
-
-namespace OpenRem.Service.Config;
+﻿namespace OpenRem.Service.Config;
 
 class ServiceConfigReader : IServiceConfigReader
 {

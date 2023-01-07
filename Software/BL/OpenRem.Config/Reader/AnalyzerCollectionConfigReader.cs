@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using OpenRem.Common.Config;
+﻿using OpenRem.Common.Config;
 using OpenRem.Config.Infrastructure;
 using OpenRem.Config.Model.AnalyzerCollection;
+using System.Linq;
 
 namespace OpenRem.Config.Reader;
 

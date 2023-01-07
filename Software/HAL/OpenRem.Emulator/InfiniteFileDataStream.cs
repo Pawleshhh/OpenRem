@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
 using OpenRem.Common;
 using OpenRem.HAL;
+using System.Reactive.Linq;
 
 namespace OpenRem.Emulator;
 

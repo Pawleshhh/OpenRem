@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace OpenRem.Engine.OS;
+﻿namespace OpenRem.Engine.OS;
 
 internal interface IPnPDevice
 {

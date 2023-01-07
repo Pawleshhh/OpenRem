@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Moq;
-using NUnit.Framework;
-using OpenRem.Common;
+﻿using NUnit.Framework;
 using OpenRem.Config.Infrastructure;
 using OpenRem.Config.Reader;
 

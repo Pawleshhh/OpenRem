@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 public class BooleanToObjectConverter : IValueConverter
 {
@@ -18,7 +13,7 @@ public class BooleanToObjectConverter : IValueConverter
             return DependencyProperty.UnsetValue;
         }
 
-        var booleanValue = (bool) value;
+        var booleanValue = (bool)value;
 
 
         return booleanValue ? TrueValue : FalseValue;

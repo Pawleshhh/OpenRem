@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Windows;
-using System.Windows.Media;
 
 namespace OpenRem.CommonUI;
 
@@ -69,7 +65,7 @@ public static class VisualTreeUtilities
     {
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
         {
-            var child = (Visual) VisualTreeHelper.GetChild(parent, i);
+            var child = (Visual)VisualTreeHelper.GetChild(parent, i);
             if (child != null)
             {
                 T correctlyTyped = child as T;
@@ -211,7 +207,7 @@ public static class VisualTreeUtilities
                 {
                     if (childName == null || child.Name == childName)
                     {
-                        yield return (T) child;
+                        yield return (T)child;
                         if (!deepSearch)
                         {
                             continue;

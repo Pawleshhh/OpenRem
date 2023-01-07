@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace OpenRem.Application.Config;
+﻿namespace OpenRem.Application.Config;
 
 public static class ApplicationConfigurationHelper
 {

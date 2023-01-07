@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OpenRem.Common;
+﻿using OpenRem.Common;
 
 namespace OpenRem.Emulator;
 

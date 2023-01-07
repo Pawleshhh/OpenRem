@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-
-namespace OpenRem.Engine.Test;
+﻿namespace OpenRem.Engine.Test;
 
 [TestFixture]
 class PcmEncodingTest
@@ -11,7 +9,7 @@ class PcmEncodingTest
     public void PcmEncoding_IsConvertibleToInt_WithExpectedValues_HowManyBytesPerSample(PcmEncoding encoding,
         int expectedValue)
     {
-        Assert.AreEqual(expectedValue, (int) encoding);
+        Assert.AreEqual(expectedValue, (int)encoding);
     }
 
     [TestCase(PcmEncoding.PCM32Bit, 4)]

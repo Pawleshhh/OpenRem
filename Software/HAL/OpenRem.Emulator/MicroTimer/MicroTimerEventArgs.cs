@@ -1,5 +1,3 @@
-using System;
-
 namespace OpenRem.Emulator;
 
 /// <summary>

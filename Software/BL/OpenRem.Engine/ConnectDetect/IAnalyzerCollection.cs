@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenRem.Engine;
+﻿namespace OpenRem.Engine;
 
 internal interface IAnalyzerCollection
 {

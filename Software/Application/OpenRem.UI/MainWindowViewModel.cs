@@ -1,7 +1,6 @@
-﻿using System.Linq;
+﻿using Microsoft.Win32;
 using OpenRem.CommonUI;
 using OpenRem.Engine;
-using Microsoft.Win32;
 
 namespace OpenRem.UI;
 
@@ -57,7 +56,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private void ShowSaveFileDialog()
     {
-        SaveFileDialog saveFileDialog = new SaveFileDialog {Filter = "raw|*.raw", Title = "Record to raw file"};
+        SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = "raw|*.raw", Title = "Record to raw file" };
         saveFileDialog.ShowDialog();
 
         OutputFilename = saveFileDialog.FileName;

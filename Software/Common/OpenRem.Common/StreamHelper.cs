@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace OpenRem.Common;
+﻿namespace OpenRem.Common;
 
 public static class StreamHelper
 {

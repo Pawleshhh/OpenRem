@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace OpenRem.Common;
+﻿namespace OpenRem.Common;
 
 public static class AppDomainHelper
 {

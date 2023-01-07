@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 public class ToggleButtonExtensions
 {
@@ -18,7 +16,7 @@ public class ToggleButtonExtensions
 
     public static string GetCheckedContent(DependencyObject element)
     {
-        return (string) element.GetValue(ToggleButtonExtensions.CheckedContentProperty);
+        return (string)element.GetValue(ToggleButtonExtensions.CheckedContentProperty);
     }
 
     public static readonly DependencyProperty UncheckedContentProperty = DependencyProperty.RegisterAttached(
@@ -35,6 +33,6 @@ public class ToggleButtonExtensions
 
     public static string GetUncheckedContent(DependencyObject element)
     {
-        return (string) element.GetValue(ToggleButtonExtensions.UncheckedContentProperty);
+        return (string)element.GetValue(ToggleButtonExtensions.UncheckedContentProperty);
     }
 }

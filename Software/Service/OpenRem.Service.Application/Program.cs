@@ -1,8 +1,7 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using OpenRem.Common.Application.Autofac;
-using OpenRem.Service.Protocol;
 using OpenRem.Service.Server;
+using System;
 
 namespace OpenRem.Service.Application;
 

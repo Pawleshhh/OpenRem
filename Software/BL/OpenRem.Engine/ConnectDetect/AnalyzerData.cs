@@ -1,10 +1,9 @@
-﻿using System;
-using OpenRem.Config;
+﻿using OpenRem.Config;
 using OpenRem.HAL;
 
 namespace OpenRem.Engine;
 
-internal class AnalyzerData: IEquatable<AnalyzerData>
+internal class AnalyzerData : IEquatable<AnalyzerData>
 {
     public AnalyzerData(Guid id, HardwareKey hardwareKey)
     {
@@ -44,7 +43,7 @@ internal class AnalyzerData: IEquatable<AnalyzerData>
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((AnalyzerData) obj);
+        return Equals((AnalyzerData)obj);
     }
 
     public override int GetHashCode()

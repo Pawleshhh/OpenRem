@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using OpenRem.Arduino;
-using OpenRem.Config;
+﻿using OpenRem.Config;
 using OpenRem.Emulator;
 
 namespace OpenRem.Engine;
@@ -22,7 +18,7 @@ class AnalyzerCollection : IAnalyzerCollection
         this.arduinoFactory = arduinoFactory;
         this.analyzerConfigReader = analyzerConfigReader;
     }
-    
+
     public Guid Add(ArduinoDevice arduinoDevice)
     {
         var hardwareKey = new HardwareKey(arduinoDevice.Name + arduinoDevice.ComPort);
@@ -68,5 +64,5 @@ class AnalyzerCollection : IAnalyzerCollection
         return guid;
     }
 
-    public AnalyzerData this[Guid id]  => this.inMemoryAnalyzers.FirstOrDefault(x => x.Id == id);
+    public AnalyzerData this[Guid id] => this.inMemoryAnalyzers.FirstOrDefault(x => x.Id == id);
 }

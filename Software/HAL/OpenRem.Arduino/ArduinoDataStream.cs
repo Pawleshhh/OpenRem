@@ -1,10 +1,10 @@
+using OpenRem.HAL;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using OpenRem.HAL;
 
 namespace OpenRem.Arduino;
 
@@ -69,13 +69,13 @@ public class ArduinoDataStream : IDataStream
 
     private void SendStartMessage()
     {
-        var message = new byte[] {1};
+        var message = new byte[] { 1 };
         this.serialPort.Write(message, 0, message.Length);
     }
 
     private void SendStopMessage()
     {
-        var message = new byte[] {0};
+        var message = new byte[] { 0 };
         this.serialPort.Write(message, 0, message.Length);
     }
 }

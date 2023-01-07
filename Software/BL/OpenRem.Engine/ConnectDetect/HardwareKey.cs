@@ -1,15 +1,13 @@
-﻿using System;
+﻿namespace OpenRem.Engine;
 
-namespace OpenRem.Engine;
-
-internal class HardwareKey: IEquatable<HardwareKey>
+internal class HardwareKey : IEquatable<HardwareKey>
 {
     public HardwareKey(string hardwareName)
     {
         HardwareName = hardwareName;
     }
 
-    public string HardwareName { get;  }
+    public string HardwareName { get; }
 
     public bool Equals(HardwareKey other)
     {
@@ -23,7 +21,7 @@ internal class HardwareKey: IEquatable<HardwareKey>
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((HardwareKey) obj);
+        return Equals((HardwareKey)obj);
     }
 
     public override int GetHashCode()

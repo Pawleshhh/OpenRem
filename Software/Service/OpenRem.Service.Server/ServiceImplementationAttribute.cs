@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenRem.Service.Server;
+﻿namespace OpenRem.Service.Server;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class ServiceImplementationAttribute : Attribute

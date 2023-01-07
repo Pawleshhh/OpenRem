@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using OpenRem.Arduino;
+﻿using System.Text.RegularExpressions;
 
 namespace OpenRem.Engine;
 
@@ -19,7 +17,7 @@ internal static class ArduinoNameParser
 
         if (match.Success)
         {
-            return (ArduinoType) Enum.Parse(typeof(ArduinoType), match.Groups[1].Value);
+            return (ArduinoType)Enum.Parse(typeof(ArduinoType), match.Groups[1].Value);
         }
         else
         {

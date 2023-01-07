@@ -1,9 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 class BooleanToWrapConverter : IValueConverter
 {
@@ -15,7 +10,7 @@ class BooleanToWrapConverter : IValueConverter
             return DependencyProperty.UnsetValue;
         }
 
-        if ((bool) value)
+        if ((bool)value)
         {
             return TextWrapping.Wrap;
         }
@@ -31,7 +26,7 @@ class BooleanToWrapConverter : IValueConverter
             return DependencyProperty.UnsetValue;
         }
 
-        if ((TextWrapping) value == TextWrapping.NoWrap)
+        if ((TextWrapping)value == TextWrapping.NoWrap)
         {
             return false;
         }

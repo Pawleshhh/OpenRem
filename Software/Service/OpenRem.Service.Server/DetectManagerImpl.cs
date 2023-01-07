@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Grpc.Core;
-using OpenRem.Engine;
+﻿using OpenRem.Engine;
 using OpenRem.Service.Protocol;
 
 namespace OpenRem.Service.Server;
@@ -19,7 +16,7 @@ class DetectManagerImpl : DetectManager.DetectManagerBase
     public override async Task<GetAnalyzerResponse> GetAnalyzers(EmptyRequest request, ServerCallContext context)
     {
         var analyzers = await this.real.GetAnalyzersAsync();
-        
+
         var response = new GetAnalyzerResponse();
         response.Analyzers.AddRange(analyzers.Select(x => new GetAnalyzerResponse.Types.AnalyzerDTO()
         {

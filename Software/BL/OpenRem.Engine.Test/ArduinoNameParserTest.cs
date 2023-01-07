@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenRem.Arduino;
+﻿using OpenRem.Arduino;
 
 namespace OpenRem.Engine.Test;
 

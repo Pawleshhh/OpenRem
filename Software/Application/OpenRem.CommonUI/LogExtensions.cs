@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 public class LogExtensions
 {
@@ -18,7 +16,7 @@ public class LogExtensions
 
     public static bool GetIsScrollLockOn(DependencyObject element)
     {
-        return (bool) element.GetValue(LogExtensions.IsScrollLockOnProperty);
+        return (bool)element.GetValue(LogExtensions.IsScrollLockOnProperty);
     }
 
     public static readonly DependencyProperty ToggleWrapProperty = DependencyProperty.RegisterAttached(
@@ -35,6 +33,6 @@ public class LogExtensions
 
     public static bool GetToggleWrap(DependencyObject element)
     {
-        return (bool) element.GetValue(LogExtensions.ToggleWrapProperty);
+        return (bool)element.GetValue(LogExtensions.ToggleWrapProperty);
     }
 }

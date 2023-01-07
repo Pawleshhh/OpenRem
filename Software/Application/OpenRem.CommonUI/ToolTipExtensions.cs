@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Markup;
 
 namespace OpenRem.CommonUI;
 
@@ -54,7 +49,7 @@ public class ToolTipExtensions : DependencyObject
 
     public static string GetFormattedToolTip(DependencyObject obj)
     {
-        return (string) obj.GetValue(ToolTipExtensions.FormattedToolTipProperty);
+        return (string)obj.GetValue(ToolTipExtensions.FormattedToolTipProperty);
     }
 
     public static void SetFormattedToolTip(DependencyObject obj, string value)
@@ -87,7 +82,7 @@ public class ToolTipExtensions : DependencyObject
     /// </summary>
     public static InlineStyles GetInlineStyles(DependencyObject obj)
     {
-        return (InlineStyles) obj.GetValue(ToolTipExtensions.InlineStylesProperty);
+        return (InlineStyles)obj.GetValue(ToolTipExtensions.InlineStylesProperty);
     }
 
     /// <summary>
@@ -128,7 +123,7 @@ public class ToolTipExtensions : DependencyObject
             inlines.Add(Traverse(textBlock, textWithFormattingInfo));
         }
 
-        ((FrameworkElement) d).ToolTip = textBlock;
+        ((FrameworkElement)d).ToolTip = textBlock;
     }
 
     #endregion Attached properties
@@ -365,7 +360,7 @@ public class ToolTipExtensions : DependencyObject
         var styleId = token.Substring(startIndex, endIndex - startIndex);
         var style = GetInlineStyles(targetObject)?.Styles.FirstOrDefault(inlineStyle => inlineStyle.Id == styleId)
             ?.Style;
-        return style != null ? new Span(content) {Style = style} : content;
+        return style != null ? new Span(content) { Style = style } : content;
     }
 }
 
@@ -386,7 +381,7 @@ public class InlineStyle : DependencyObject
     /// </summary>
     public string Id
     {
-        get { return (string) GetValue(InlineStyle.IdProperty); }
+        get { return (string)GetValue(InlineStyle.IdProperty); }
         set { SetValue(InlineStyle.IdProperty, value); }
     }
 
@@ -401,7 +396,7 @@ public class InlineStyle : DependencyObject
     /// </summary>
     public Style Style
     {
-        get { return (Style) GetValue(InlineStyle.StyleProperty); }
+        get { return (Style)GetValue(InlineStyle.StyleProperty); }
         set { SetValue(InlineStyle.StyleProperty, value); }
     }
 

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
-
-namespace OpenRem.Config.Infrastructure;
+﻿namespace OpenRem.Config.Infrastructure;
 
 class BusinessLogicConfigurationAdapter : IBusinessLogicConfiguration
 {

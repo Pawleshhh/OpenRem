@@ -1,7 +1,6 @@
-﻿using System.Reflection;
-using Autofac;
-using Microsoft.Extensions.Configuration;
+﻿using Autofac;
 using OpenRem.Config.Infrastructure;
+using System.Reflection;
 
 namespace OpenRem.Config.Module;
 

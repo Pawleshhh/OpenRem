@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
 namespace OpenRem.CommonUI;
@@ -10,7 +7,7 @@ public class MyWindow : Window
 {
     public object TitlePlaceableContent
     {
-        get => (object) GetValue(MyWindow.TitlePlaceableContentProperty);
+        get => (object)GetValue(MyWindow.TitlePlaceableContentProperty);
         set => SetValue(MyWindow.TitlePlaceableContentProperty, value);
     }
 
@@ -137,7 +134,7 @@ public class MyWindow : Window
         {
             case 0x0024: // WM_GETMINMAXINFO
                 NativeMethods.MINMAXINFO mmi =
-                    (NativeMethods.MINMAXINFO) Marshal.PtrToStructure(lParam, typeof(NativeMethods.MINMAXINFO));
+                    (NativeMethods.MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(NativeMethods.MINMAXINFO));
 
                 // Adjust the maximized size and position
                 // to fit the work area of the correct monitor
@@ -158,8 +155,8 @@ public class MyWindow : Window
                         Math.Abs(rcWorkArea.right - rcWorkArea.left);
                     mmi.ptMaxSize.y =
                         Math.Abs(rcWorkArea.bottom - rcWorkArea.top);
-                    mmi.ptMinTrackSize.x = (int) MinWidth;
-                    mmi.ptMinTrackSize.y = (int) MinHeight;
+                    mmi.ptMinTrackSize.x = (int)MinWidth;
+                    mmi.ptMinTrackSize.y = (int)MinHeight;
                 }
 
                 Marshal.StructureToPtr(mmi, lParam, true);
@@ -167,7 +164,7 @@ public class MyWindow : Window
                 break;
         }
 
-        return (IntPtr) 0;
+        return (IntPtr)0;
     }
 
 

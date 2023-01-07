@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Core;
+using OpenRem.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Autofac;
-using Autofac.Core;
-using OpenRem.Core;
 
 namespace OpenRem.Common.Application.Autofac;
 

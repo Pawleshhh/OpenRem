@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 
 namespace OpenRem.Emulator;
@@ -19,5 +18,5 @@ public class MicroStopwatch : Stopwatch
         }
     }
 
-    public long ElapsedMicroseconds => (long) (ElapsedTicks * this._microSecPerTick);
+    public long ElapsedMicroseconds => (long)(ElapsedTicks * this._microSecPerTick);
 }

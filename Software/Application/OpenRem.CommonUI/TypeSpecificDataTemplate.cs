@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Markup;
-
-namespace OpenRem.CommonUI;
+﻿namespace OpenRem.CommonUI;
 
 [ContentProperty("DataTemplate")]
 public class TypeSpecificDataTemplate : DependencyObject
@@ -14,7 +11,7 @@ public class TypeSpecificDataTemplate : DependencyObject
 
     public DataTemplate DataTemplate
     {
-        get { return (DataTemplate) GetValue(TypeSpecificDataTemplate.DataTemplateProperty); }
+        get { return (DataTemplate)GetValue(TypeSpecificDataTemplate.DataTemplateProperty); }
         set { SetValue(TypeSpecificDataTemplate.DataTemplateProperty, value); }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace OpenRem.Engine.OS;
+﻿namespace OpenRem.Engine.OS;
 
 internal interface IFileAccess
 {
