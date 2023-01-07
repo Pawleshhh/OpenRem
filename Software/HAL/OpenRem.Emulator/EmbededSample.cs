@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using OpenRem.Common;
+﻿using OpenRem.Common;
 
-namespace OpenRem.Emulator
+namespace OpenRem.Emulator;
+
+public class EmbeddedSample : IEmbeddedSample
 {
-    public class EmbeddedSample : IEmbeddedSample
+    public IEnumerable<string> GetSamples()
     {
-        public IEnumerable<string> GetSamples()
-        {
-            return typeof(EmbeddedSample).Assembly.GetResourcesEndsWith(".raw");
-        }
+        return typeof(EmbeddedSample).Assembly.GetResourcesEndsWith(".raw");
     }
 }

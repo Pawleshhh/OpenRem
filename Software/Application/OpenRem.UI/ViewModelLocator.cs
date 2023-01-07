@@ -1,9 +1,8 @@
 ﻿using CommonServiceLocator;
 
-namespace OpenRem.UI
+namespace OpenRem.UI;
+
+public class ViewModelLocator
 {
-    public class ViewModelLocator
-    {
-        public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-    }
+    public MainWindowViewModel MainWindow => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
 }

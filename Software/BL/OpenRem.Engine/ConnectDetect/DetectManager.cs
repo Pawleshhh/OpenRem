@@ -1,62 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace OpenRem.Engine
+namespace OpenRem.Engine;
+
+class DetectManager : IDetectManager
 {
-    class DetectManager : IDetectManager
+    private readonly IDeviceFinder deviceFinder;
+    private readonly IEmulatorFinder emulatorFinder;
+    private readonly IAnalyzerCollection analyzerCollection;
+
+    public DetectManager(IAnalyzerCollection analyzerCollection, IDeviceFinder deviceFinder,
+        IEmulatorFinder emulatorFinder)
     {
-        private readonly IDeviceFinder deviceFinder;
-        private readonly IEmulatorFinder emulatorFinder;
-        private readonly IAnalyzerCollection analyzerCollection;
+        this.analyzerCollection = analyzerCollection;
+        this.deviceFinder = deviceFinder;
+        this.emulatorFinder = emulatorFinder;
+    }
 
-        public DetectManager(IAnalyzerCollection analyzerCollection, IDeviceFinder deviceFinder,
-            IEmulatorFinder emulatorFinder)
+    public Task<Analyzer[]> GetAnalyzersAsync()
+    {
+        var analyzers = new List<Analyzer>();
+
+        var arduinoDevices = this.deviceFinder.GetArduinoDevices();
+        foreach (var arduinoDevice in arduinoDevices)
         {
-            this.analyzerCollection = analyzerCollection;
-            this.deviceFinder = deviceFinder;
-            this.emulatorFinder = emulatorFinder;
+            var guid = this.analyzerCollection.Add(arduinoDevice);
+
+            analyzers.Add(ToAnalyzer(guid, arduinoDevice));
         }
 
-        public Task<Analyzer[]> GetAnalyzersAsync()
+        var emulators = this.emulatorFinder.GetEmulators();
+        foreach (var emulator in emulators)
         {
-            var analyzers = new List<Analyzer>();
+            var guid = this.analyzerCollection.Add(emulator);
 
-            var arduinoDevices = this.deviceFinder.GetArduinoDevices();
-            foreach (var arduinoDevice in arduinoDevices)
-            {
-                var guid = this.analyzerCollection.Add(arduinoDevice);
-
-                analyzers.Add(ToAnalyzer(guid, arduinoDevice));
-            }
-
-            var emulators = this.emulatorFinder.GetEmulators();
-            foreach (var emulator in emulators)
-            {
-                var guid = this.analyzerCollection.Add(emulator);
-
-                analyzers.Add(ToAnalyzer(guid, emulator));
-            }
-
-            return Task.FromResult(analyzers.ToArray());
+            analyzers.Add(ToAnalyzer(guid, emulator));
         }
 
-        private Analyzer ToAnalyzer(Guid id, ArduinoDevice arduinoDevice)
-        {
-            return new Analyzer
-            {
-                Id = id,
-                Name = arduinoDevice.Name
-            };
-        }
+        return Task.FromResult(analyzers.ToArray());
+    }
 
-        private Analyzer ToAnalyzer(Guid id, Emulator emulator)
+    private Analyzer ToAnalyzer(Guid id, ArduinoDevice arduinoDevice)
+    {
+        return new Analyzer
         {
-            return new Analyzer
-            {
-                Id = id,
-                Name = "Emulator - " + emulator.SignalName
-            };
-        }
+            Id = id,
+            Name = arduinoDevice.Name
+        };
+    }
+
+    private Analyzer ToAnalyzer(Guid id, Emulator emulator)
+    {
+        return new Analyzer
+        {
+            Id = id,
+            Name = "Emulator - " + emulator.SignalName
+        };
     }
 }

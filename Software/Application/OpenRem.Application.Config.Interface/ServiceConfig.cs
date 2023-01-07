@@ -1,8 +1,7 @@
-﻿namespace OpenRem.Config
+﻿namespace OpenRem.Config;
+
+public class ServiceConfig
 {
-    public class ServiceConfig
-    {
-        public string HostName { get; set; }
-        public int Port { get; set; }
-    }
+    public string HostName { get; set; }
+    public int Port { get; set; }
 }

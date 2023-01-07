@@ -1,12 +1,11 @@
 ﻿using Autofac;
 
-namespace OpenRem.UI.Module
+namespace OpenRem.UI.Module;
+
+public class UIModule : Autofac.Module
 {
-    public class UIModule : Autofac.Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<MainWindow>().AsSelf();
-        }
+        builder.RegisterType<MainWindow>().AsSelf();
     }
 }

@@ -1,49 +1,46 @@
-﻿using Moq;
-using NUnit.Framework;
-using OpenRem.Emulator;
+﻿using OpenRem.Emulator;
 
-namespace OpenRem.Engine.Test
+namespace OpenRem.Engine.Test;
+
+[TestFixture]
+public class EmulatorFinderTest
 {
-    [TestFixture]
-    public class EmulatorFinderTest
+    private Mock<IEmbeddedSample> embeddedSampleMock;
+    private EmulatorFinder sut;
+
+    [SetUp]
+    public void Init()
     {
-        private Mock<IEmbeddedSample> embeddedSampleMock;
-        private EmulatorFinder sut;
+        this.embeddedSampleMock = new Mock<IEmbeddedSample>();
+        this.sut = CreateSut();
+    }
 
-        [SetUp]
-        public void Init()
+    [Test]
+    public void NoFilesFound_NoEmulators()
+    {
+        var emulators = this.sut.GetEmulators();
+        Assert.IsNotNull(emulators);
+        Assert.AreEqual(0, emulators.Length);
+    }
+
+    [Test]
+    public void OneEmbeddedSample()
+    {
+        const string sampleName = "emulator.raw";
+        this.embeddedSampleMock.Setup(x => x.GetSamples()).Returns(() => new[]
         {
-            this.embeddedSampleMock = new Mock<IEmbeddedSample>();
-            this.sut = CreateSut();
-        }
+            sampleName
+        });
 
-        [Test]
-        public void NoFilesFound_NoEmulators()
-        {
-            var emulators = this.sut.GetEmulators();
-            Assert.IsNotNull(emulators);
-            Assert.AreEqual(0, emulators.Length);
-        }
+        var emulators = this.sut.GetEmulators();
 
-        [Test]
-        public void OneEmbeddedSample()
-        {
-            const string sampleName = "emulator.raw";
-            this.embeddedSampleMock.Setup(x => x.GetSamples()).Returns(() => new[]
-            {
-                sampleName
-            });
+        Assert.AreEqual(1, emulators.Length);
+        Assert.AreEqual(sampleName, emulators[0].SignalName);
+        Assert.AreEqual(true, emulators[0].EmbeddedSignal);
+    }
 
-            var emulators = this.sut.GetEmulators();
-
-            Assert.AreEqual(1, emulators.Length);
-            Assert.AreEqual(sampleName, emulators[0].SignalName);
-            Assert.AreEqual(true, emulators[0].EmbeddedSignal);
-        }
-
-        private EmulatorFinder CreateSut()
-        {
-            return new EmulatorFinder(this.embeddedSampleMock.Object);
-        }
+    private EmulatorFinder CreateSut()
+    {
+        return new EmulatorFinder(this.embeddedSampleMock.Object);
     }
 }

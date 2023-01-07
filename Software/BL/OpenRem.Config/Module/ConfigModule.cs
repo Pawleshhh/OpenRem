@@ -1,26 +1,24 @@
-﻿using System.Reflection;
-using Autofac;
-using Microsoft.Extensions.Configuration;
+﻿using Autofac;
 using OpenRem.Config.Infrastructure;
+using System.Reflection;
 
-namespace OpenRem.Config.Module
+namespace OpenRem.Config.Module;
+
+class ConfigModule : Autofac.Module
 {
-    class ConfigModule : Autofac.Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            var dataAccess = Assembly.GetExecutingAssembly();
+        var dataAccess = Assembly.GetExecutingAssembly();
 
-            builder.RegisterAssemblyTypes(dataAccess)
-                .AsImplementedInterfaces();
+        builder.RegisterAssemblyTypes(dataAccess)
+            .AsImplementedInterfaces();
 
-            builder.RegisterType<BusinessLogicConfigurationProvider>()
-                .As<IBusinessLogicConfigurationProvider>()
-                .SingleInstance();
+        builder.RegisterType<BusinessLogicConfigurationProvider>()
+            .As<IBusinessLogicConfigurationProvider>()
+            .SingleInstance();
 
-            builder.Register(c => c.Resolve<IBusinessLogicConfigurationProvider>().GetConfigurationRoot())
-                .As<IBusinessLogicConfiguration>()
-                .SingleInstance();
-        }
+        builder.Register(c => c.Resolve<IBusinessLogicConfigurationProvider>().GetConfigurationRoot())
+            .As<IBusinessLogicConfiguration>()
+            .SingleInstance();
     }
 }

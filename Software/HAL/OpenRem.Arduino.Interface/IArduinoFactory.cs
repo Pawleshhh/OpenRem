@@ -1,9 +1,8 @@
 ﻿using OpenRem.HAL;
 
-namespace OpenRem.Arduino
+namespace OpenRem.Arduino;
+
+public interface IArduinoFactory
 {
-    public interface IArduinoFactory
-    {
-        IDataStream Create(string comPort, ArduinoType arduinoType);
-    }
+    IDataStream Create(string comPort, ArduinoType arduinoType);
 }

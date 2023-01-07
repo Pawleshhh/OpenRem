@@ -1,66 +1,64 @@
-﻿using System.Linq;
+﻿using Microsoft.Win32;
 using OpenRem.CommonUI;
 using OpenRem.Engine;
-using Microsoft.Win32;
 
-namespace OpenRem.UI
+namespace OpenRem.UI;
+
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
+    private readonly IRawFileRecorder rawFileRecorder;
+    public RelayCommand LoadAnalyzers { get; private set; }
+    public RelayCommand SelectFile { get; private set; }
+    public RelayCommand StartRecording { get; private set; }
+    public RelayCommand StopRecording { get; private set; }
+
+    public UICollection<Analyzer> Analyzers { get; } = new UICollection<Analyzer>();
+
+    private Analyzer selectedAnalyzer;
+
+    public Analyzer SelectedAnalyzer
     {
-        private readonly IRawFileRecorder rawFileRecorder;
-        public RelayCommand LoadAnalyzers { get; private set; }
-        public RelayCommand SelectFile { get; private set; }
-        public RelayCommand StartRecording { get; private set; }
-        public RelayCommand StopRecording { get; private set; }
+        get => this.selectedAnalyzer;
+        set => Set(ref this.selectedAnalyzer, value);
+    }
 
-        public UICollection<Analyzer> Analyzers { get; } = new UICollection<Analyzer>();
+    private string outputFilename;
+    private readonly IDetectManager detectManager;
 
-        private Analyzer selectedAnalyzer;
+    public string OutputFilename
+    {
+        get => this.outputFilename;
+        set => Set(ref this.outputFilename, value);
+    }
 
-        public Analyzer SelectedAnalyzer
+    public MainWindowViewModel(IDetectManager detectManager, IRawFileRecorder rawFileRecorder)
+    {
+        this.rawFileRecorder = rawFileRecorder;
+        this.detectManager = detectManager;
+
+        AddCommands();
+    }
+
+    private void AddCommands()
+    {
+        LoadAnalyzers = new RelayCommand(async () =>
         {
-            get => this.selectedAnalyzer;
-            set => Set(ref this.selectedAnalyzer, value);
-        }
-
-        private string outputFilename;
-        private readonly IDetectManager detectManager;
-
-        public string OutputFilename
+            Analyzers.Reset(await this.detectManager.GetAnalyzersAsync());
+            SelectedAnalyzer = Analyzers.FirstOrDefault();
+        });
+        SelectFile = new RelayCommand(ShowSaveFileDialog);
+        StartRecording = new RelayCommand(async () =>
         {
-            get => this.outputFilename;
-            set => Set(ref this.outputFilename, value);
-        }
+            await this.rawFileRecorder.StartAsync(SelectedAnalyzer.Id, OutputFilename);
+        });
+        StopRecording = new RelayCommand(async () => { await this.rawFileRecorder.StopAsync(); });
+    }
 
-        public MainWindowViewModel(IDetectManager detectManager, IRawFileRecorder rawFileRecorder)
-        {
-            this.rawFileRecorder = rawFileRecorder;
-            this.detectManager = detectManager;
+    private void ShowSaveFileDialog()
+    {
+        SaveFileDialog saveFileDialog = new SaveFileDialog { Filter = "raw|*.raw", Title = "Record to raw file" };
+        saveFileDialog.ShowDialog();
 
-            AddCommands();
-        }
-
-        private void AddCommands()
-        {
-            LoadAnalyzers = new RelayCommand(async () =>
-            {
-                Analyzers.Reset(await this.detectManager.GetAnalyzersAsync());
-                SelectedAnalyzer = Analyzers.FirstOrDefault();
-            });
-            SelectFile = new RelayCommand(ShowSaveFileDialog);
-            StartRecording = new RelayCommand(async () =>
-            {
-                await this.rawFileRecorder.StartAsync(SelectedAnalyzer.Id, OutputFilename);
-            });
-            StopRecording = new RelayCommand(async () => { await this.rawFileRecorder.StopAsync(); });
-        }
-
-        private void ShowSaveFileDialog()
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog {Filter = "raw|*.raw", Title = "Record to raw file"};
-            saveFileDialog.ShowDialog();
-
-            OutputFilename = saveFileDialog.FileName;
-        }
+        OutputFilename = saveFileDialog.FileName;
     }
 }

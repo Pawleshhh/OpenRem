@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Config
+﻿namespace OpenRem.Config;
+
+public class BootstrapperConfig
 {
-    public class BootstrapperConfig
-    {
-        public LogicSeparation LogicSeparation { get; set; }
-    }
+    public LogicSeparation LogicSeparation { get; set; }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace OpenRem.Engine
+namespace OpenRem.Engine;
+
+[DataContract]
+public class Analyzer
 {
-    [DataContract]
-    public class Analyzer
-    {
-        [DataMember] public Guid Id { get; set; }
-        [DataMember] public string Name { get; set; }
-    }
+    [DataMember] public Guid Id { get; set; }
+    [DataMember] public string Name { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Application.Config
+﻿namespace OpenRem.Application.Config;
+
+internal interface IApplicationConfigurationProvider
 {
-    internal interface IApplicationConfigurationProvider
-    {
-        IApplicationConfiguration GetConfigurationRoot();
-    }
+    IApplicationConfiguration GetConfigurationRoot();
 }

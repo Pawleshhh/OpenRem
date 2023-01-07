@@ -1,42 +1,41 @@
-﻿using System.Linq;
-using OpenRem.Common.Config;
+﻿using OpenRem.Common.Config;
 using OpenRem.Config.Infrastructure;
 using OpenRem.Config.Model.AnalyzerCollection;
+using System.Linq;
 
-namespace OpenRem.Config.Reader
+namespace OpenRem.Config.Reader;
+
+class AnalyzerCollectionConfigReader : IAnalyzerConfigReader
 {
-    class AnalyzerCollectionConfigReader : IAnalyzerConfigReader
+    private IBusinessLogicConfiguration configuration;
+
+    public AnalyzerCollectionConfigReader(IBusinessLogicConfiguration configuration)
     {
-        private IBusinessLogicConfiguration configuration;
+        this.configuration = configuration;
+    }
 
-        public AnalyzerCollectionConfigReader(IBusinessLogicConfiguration configuration)
+    public AnalyzerConfig GetConfig(string name)
+    {
+        var dtos = this.configuration.BindAll<AnalyzerDto>("AnalyzerCollection");
+
+        var dto = dtos.FirstOrDefault(x => x.Name == name);
+        if (dto == null)
         {
-            this.configuration = configuration;
+            throw new ConfigNotFoundException($"Requested {name}");
         }
 
-        public AnalyzerConfig GetConfig(string name)
+        return new AnalyzerConfig
         {
-            var dtos = this.configuration.BindAll<AnalyzerDto>("AnalyzerCollection");
-
-            var dto = dtos.FirstOrDefault(x => x.Name == name);
-            if (dto == null)
+            Name = dto.Name,
+            SubChunkSize = dto.SubChunkSize,
+            ChannelsNumber = dto.Channels,
+            SampleRate = dto.SampleRate,
+            Probes = dto.Probes.Select(probe => new ProbeConfig()
             {
-                throw new ConfigNotFoundException($"Requested {name}");
-            }
-
-            return new AnalyzerConfig
-            {
-                Name = dto.Name,
-                SubChunkSize = dto.SubChunkSize,
-                ChannelsNumber = dto.Channels,
-                SampleRate = dto.SampleRate,
-                Probes = dto.Probes.Select(probe => new ProbeConfig()
-                {
-                    Side = probe.Side,
-                    InputChannel = probe.Input.Channel,
-                    OutputChannel = probe.Output.Channel
-                }).ToArray()
-            };
-        }
+                Side = probe.Side,
+                InputChannel = probe.Input.Channel,
+                OutputChannel = probe.Output.Channel
+            }).ToArray()
+        };
     }
 }

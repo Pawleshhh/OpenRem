@@ -1,10 +1,9 @@
-﻿namespace OpenRem.Common.Application.Autofac
+﻿namespace OpenRem.Common.Application.Autofac;
+
+public enum AssemblyFilter
 {
-    public enum AssemblyFilter
-    {
-        Everything,
-        OnlyApplicationLayer,
-        OnlyLogic,
-        OmitServiceLayer
-    }
+    Everything,
+    OnlyApplicationLayer,
+    OnlyLogic,
+    OmitServiceLayer
 }

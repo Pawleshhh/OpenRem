@@ -1,5 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using OpenRem.Core;
+﻿using OpenRem.Core;
+using System.Runtime.CompilerServices;
 
 
 [assembly: InternalsVisibleTo("OpenRem.Service.Config.Test")]

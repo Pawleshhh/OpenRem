@@ -1,11 +1,10 @@
 ﻿using OpenRem.Common;
 
-namespace OpenRem.Config.Model.AnalyzerCollection
+namespace OpenRem.Config.Model.AnalyzerCollection;
+
+class ProbeDto
 {
-    class ProbeDto
-    {
-        public Side Side { get; set; }
-        public MicrophoneDto Input { get; set; }
-        public MicrophoneDto Output { get; set; }
-    }
+    public Side Side { get; set; }
+    public MicrophoneDto Input { get; set; }
+    public MicrophoneDto Output { get; set; }
 }

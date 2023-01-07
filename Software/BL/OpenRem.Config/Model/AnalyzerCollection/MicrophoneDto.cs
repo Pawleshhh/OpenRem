@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Config.Model.AnalyzerCollection
+﻿namespace OpenRem.Config.Model.AnalyzerCollection;
+
+class MicrophoneDto
 {
-    class MicrophoneDto
-    {
-        public int Channel { get; set; }
-    }
+    public int Channel { get; set; }
 }

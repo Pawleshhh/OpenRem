@@ -1,18 +1,17 @@
-﻿namespace OpenRem.Common
+﻿namespace OpenRem.Common;
+
+/// <summary>
+/// Represents a side
+/// </summary>
+public enum Side
 {
     /// <summary>
-    /// Represents a side
+    /// Left side
     /// </summary>
-    public enum Side
-    {
-        /// <summary>
-        /// Left side
-        /// </summary>
-        Left,
+    Left,
 
-        /// <summary>
-        /// Right side
-        /// </summary>
-        Right
-    }
+    /// <summary>
+    /// Right side
+    /// </summary>
+    Right
 }

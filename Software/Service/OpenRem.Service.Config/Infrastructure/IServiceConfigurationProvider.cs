@@ -1,7 +1,6 @@
-﻿namespace OpenRem.Service.Config
+﻿namespace OpenRem.Service.Config;
+
+internal interface IServiceConfigurationProvider
 {
-    internal interface IServiceConfigurationProvider
-    {
-        ISerivceConfiguration GetConfigurationRoot();
-    }
+    ISerivceConfiguration GetConfigurationRoot();
 }
